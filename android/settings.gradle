@@ -1,0 +1,3 @@
+rootProject.name = 'blockr'
+
+include ':app'
