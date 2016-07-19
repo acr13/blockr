@@ -1,68 +1,61 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { ROUTES } from '../constants/routes';
+import { ROUTES, HOME, QUIZ } from '../constants/routes';
 import { goBack } from '../reducers/route';
 import Home from './Home/Home';
 
 import {
   Navigator,
-  StyleSheet,
   TouchableHighlight,
-  Text
 } from 'react-native';
 
-function mapStateToProps (state) {
-  return {
-    currentRoute: state.route.get('current')
-  };
+function mapStateToProps() {
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    goBack: () => dispatch(goBack())
+    goBack: () => dispatch(goBack()),
   };
 }
-
 
 class MyNavigator extends Component {
 
   _renderHeader() {
-
     return (
       <Navigator.NavigationBar
           routeMapper={{
-            LeftButton: (route, navigator, index, navState) => {
-              console.log(route, index, navState);
+            LeftButton: (route, navigator) => {
               return (
-                <TouchableHighlight
-                    onPress={() => this.props.goBack()}
+                <TouchableHighlight onPress={() => {
+                  navigator.pop();
+                  this.props.goBack();
+                }}
                 >
                   <Text>{'Back'}</Text>
                 </TouchableHighlight>
               );
             },
 
-            RightButton: (route, navigator, index, navState) => {
+            RightButton: () => {
               return null;
             },
 
-            Title: (route, navigator, index, navState) => {
+            Title: (route) => {
               return (<Text>{route.title}</Text>);
             },
-         }}
+          }}
          style={{backgroundColor: 'gray'}}
       />
     );
   }
 
-  _renderScene = (props) => {
-    const currentRoute = this.props.currentRoute;
+  _renderScene(route, navigator) {
+    switch (route.key) {
+      case HOME:
+        return (<Home navigator={navigator} />);
 
-    switch (currentRoute) {
-      case 'home':
-        return (<Home />);
-
-      case 'quiz':
+      case QUIZ:
         return (<Text>{'Quiz'}</Text>);
 
       default:
@@ -71,7 +64,6 @@ class MyNavigator extends Component {
   }
 
   render() {
-
     return (
         <Navigator
             initialRoute={ROUTES[0]}
@@ -82,7 +74,10 @@ class MyNavigator extends Component {
         />
     );
   }
+}
 
+MyNavigator.PropTypes = {
+  goBack: PropTypes.func,
 };
 
 export default connect(

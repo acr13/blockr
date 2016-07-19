@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { startQuiz } from '../../reducers/route';
+import { ROUTES } from '../../constants/routes';
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
 
 function mapStateToProps(state) {
@@ -14,21 +15,21 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    startQuiz: () => dispatch(startQuiz())
+    startQuiz: () => dispatch(startQuiz()),
   };
 }
 
 class Home extends Component {
 
   render() {
-    const { startQuiz } = this.props;
-
     return (
       <View style={styles.home}>
         <Text>{'ASDSAKDBSAKDSABDKA'}</Text>
 
         <TouchableOpacity
-            onPress={() => startQuiz() }
+            onPress={() => {
+              this.props.navigator.push(ROUTES[1]);
+            }}
         >
           <View style={styles.start}>
             <Text style={styles.text}>{'Start'}</Text>
@@ -38,8 +39,7 @@ class Home extends Component {
       </View>
     );
   }
-
-};
+}
 
 export default connect(
   mapStateToProps,
@@ -48,7 +48,7 @@ export default connect(
 
 const styles = StyleSheet.create({
   home: {
-    flex: 1
+    flex: 1,
   },
   start: {
     flex: 1,
@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
