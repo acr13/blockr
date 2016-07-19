@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { ROUTES, HOME, QUIZ } from '../constants/routes';
 import { goBack } from '../reducers/route';
 import Home from './Home/Home';
+import Quiz from './Quiz/Quiz';
 
 import {
   Navigator,
+  Text,
   TouchableHighlight,
 } from 'react-native';
 
@@ -26,6 +28,10 @@ class MyNavigator extends Component {
       <Navigator.NavigationBar
           routeMapper={{
             LeftButton: (route, navigator) => {
+              if (route.index === 0) {
+                return null;
+              }
+
               return (
                 <TouchableHighlight onPress={() => {
                   navigator.pop();
@@ -56,7 +62,7 @@ class MyNavigator extends Component {
         return (<Home navigator={navigator} />);
 
       case QUIZ:
-        return (<Text>{'Quiz'}</Text>);
+        return (<Quiz navigator={navigator} />);
 
       default:
         return (<Text>{'default route'}</Text>);
