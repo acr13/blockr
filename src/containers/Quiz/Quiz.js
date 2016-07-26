@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import Card from '../../components/Card/Card';
+import SwipeCards from '../../components/SwipeCards/SwipeCards';
 
 function mapStateToProps() {
   return {};
@@ -18,33 +13,37 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+const Cards = [
+  {text: 'Tomato', backgroundColor: 'red'},
+  {text: 'Aubergine', backgroundColor: 'purple'},
+  {text: 'Courgette', backgroundColor: 'green'},
+  {text: 'Blueberry', backgroundColor: 'blue'},
+  {text: 'Umm...', backgroundColor: 'cyan'},
+  {text: 'orange', backgroundColor: 'orange'},
+];
+
 class Quiz extends Component {
 
   render() {
     return (
-      <View style={styles.home}>
-
-        <View style={styles.media}>
-          <Text>{'Top'}</Text>
-        </View>
-
-        <View style={styles.buttons}>
-
-          <TouchableOpacity>
-            <View style={styles.button}>
-              <Text style={styles.text}>{'No'}</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <View style={styles.button}>
-              <Text style={styles.text}>{'Yes'}</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-
-      </View>
+      <SwipeCards
+        cards={Cards}
+        loop={false}
+        renderCard={(cardData) => <Card {...cardData} />}
+        showYup
+        showNope
+        handleYup={this.handleYup}
+        handleNope={this.handleNope}
+      />
     );
+  }
+
+  handleYup() {
+    console.log('yup');
+  }
+
+  handleNope() {
+    console.log('nope');
   }
 }
 
@@ -52,38 +51,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Quiz);
-
-const styles = StyleSheet.create({
-  home: {
-    flex: 1,
-  },
-  media: {
-    flex: 1,
-    marginLeft: 40,
-    marginRight: 40,
-    marginTop: 40,
-    marginBottom: 100,
-    borderWidth: 2,
-    borderColor: '#000',
-  },
-  buttons: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: 40,
-    paddingRight: 40,
-    height: 40,
-  },
-  button: {
-    width: 100,
-    height: 100,
-    borderRadius: 100 / 2,
-    backgroundColor: 'blue',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    backgroundColor: 'transparent',
-    color: '#FFF',
-  },
-});
