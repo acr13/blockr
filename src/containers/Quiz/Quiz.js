@@ -13,13 +13,15 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+// TODO get cards from state
 const Cards = [
-  {text: 'Tomato', backgroundColor: 'red'},
-  {text: 'Aubergine', backgroundColor: 'purple'},
-  {text: 'Courgette', backgroundColor: 'green'},
-  {text: 'Blueberry', backgroundColor: 'blue'},
-  {text: 'Umm...', backgroundColor: 'cyan'},
-  {text: 'orange', backgroundColor: 'orange'},
+  {text: 'Tomato'},
+  /*{text: 'Aubergine'},
+  {text: 'Courgette'},
+  {text: 'Blueberry'},
+  {text: 'Umm...'},
+  {text: 'orange'},
+  */
 ];
 
 class Quiz extends Component {
@@ -34,6 +36,7 @@ class Quiz extends Component {
         showNope
         handleYup={this.handleYup}
         handleNope={this.handleNope}
+        navigator={this.props.navigator}
       />
     );
   }

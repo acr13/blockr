@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import clamp from '../../utils/clamp';
+import COLORS from '../../utils/colors';
+import NoMoreCards from '../Card/NoMoreCards';
 import {
   Animated,
   PanResponder,
@@ -115,11 +117,7 @@ class SwipeCards extends Component {
   }
 
   renderNoMoreCards() {
-    return (
-      <View>
-        <Text>{'No More Cards'}</Text>
-      </View>
-    );
+    return (<NoMoreCards navigator={this.props.navigator} />);
   }
 
   render() {
@@ -193,10 +191,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: COLORS.white,
   },
   yup: {
-    borderColor: 'green',
+    borderColor: COLORS.teal,
     borderWidth: 2,
     position: 'absolute',
     padding: 20,
@@ -206,10 +204,10 @@ const styles = StyleSheet.create({
   },
   yupText: {
     fontSize: 16,
-    color: 'green',
+    color: COLORS.teal,
   },
   nope: {
-    borderColor: 'red',
+    borderColor: COLORS.red,
     borderWidth: 2,
     position: 'absolute',
     bottom: 20,
@@ -219,7 +217,7 @@ const styles = StyleSheet.create({
   },
   nopeText: {
     fontSize: 16,
-    color: 'red',
+    color: COLORS.red,
   },
 });
 

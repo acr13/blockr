@@ -2,13 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ROUTES, HOME, QUIZ } from '../constants/routes';
 import { goBack } from '../reducers/route';
+import COLORS from '../utils/colors';
 import Home from './Home/Home';
 import Quiz from './Quiz/Quiz';
 
 import {
   Navigator,
+  StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 
 function mapStateToProps() {
@@ -33,13 +35,14 @@ class MyNavigator extends Component {
               }
 
               return (
-                <TouchableHighlight onPress={() => {
-                  navigator.pop();
-                  this.props.goBack();
-                }}
+                <TouchableOpacity
+                  onPress={() => {
+                    navigator.pop();
+                    this.props.goBack();
+                  }}
                 >
-                  <Text>{'Back'}</Text>
-                </TouchableHighlight>
+                  <Text style={styles.left}>{'Back'}</Text>
+                </TouchableOpacity>
               );
             },
 
@@ -48,10 +51,10 @@ class MyNavigator extends Component {
             },
 
             Title: (route) => {
-              return (<Text>{route.title}</Text>);
+              return (<Text style={styles.navTitle}>{route.title}</Text>);
             },
           }}
-         style={{backgroundColor: 'gray'}}
+         style={styles.navbar}
       />
     );
   }
@@ -81,6 +84,20 @@ class MyNavigator extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  navbar: {
+    backgroundColor: COLORS.blue,
+  },
+  navTitle: {
+    marginTop: 10,
+    color: COLORS.white,
+  },
+  left: {
+    color: COLORS.white,
+    margin: 10,
+  },
+});
 
 MyNavigator.PropTypes = {
   goBack: PropTypes.func,

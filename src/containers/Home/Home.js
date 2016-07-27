@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { startQuiz } from '../../reducers/route';
 import { ROUTES } from '../../constants/routes';
+import COLORS from '../../utils/colors';
 import {
   StyleSheet,
   Text,
@@ -29,14 +30,24 @@ class Home extends Component {
           <Text style={[styles.text, styles.blockr]}>{'Blockr'}</Text>
         </View>
 
-        <View style={styles.button}>
+        <View style={styles.buttonContainer}>
           <TouchableOpacity
               onPress={() => {
                 this.props.navigator.push(ROUTES[1]);
               }}
           >
-            <View style={styles.start}>
+            <View style={styles.button}>
               <Text style={styles.text}>{'Start'}</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+              onPress={() => {
+                this.props.navigator.push(ROUTES[1]);
+              }}
+          >
+            <View style={styles.button}>
+              <Text style={styles.text}>{'Scores'}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -53,6 +64,7 @@ export default connect(
 
 const styles = StyleSheet.create({
   home: {
+    backgroundColor: COLORS.white,
     flex: 1,
     justifyContent: 'center',
   },
@@ -60,28 +72,29 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: 'blue',
-    borderWidth: 2,
     marginTop: 100,
     marginLeft: 40,
     marginRight: 40,
-    marginBottom: 200,
+    marginBottom: 100,
+  },
+  buttonContainer: {
+    flex: 1,
   },
   button: {
     flex: 1,
-  },
-  start: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    marginHorizontal: 20,
+    marginBottom: 20,
     height: 40,
-    backgroundColor: 'red',
+    backgroundColor: COLORS.teal,
   },
   text: {
     flex: 1,
     textAlign: 'center',
+    color: COLORS.white,
   },
   blockr: {
-    color: 'red',
+    color: COLORS.red,
   },
 });

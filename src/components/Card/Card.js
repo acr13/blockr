@@ -9,8 +9,8 @@ export default class Card extends Component {
 
   render() {
     return (
-      <View style={[styles.card, { backgroundColor: this.props.backgroundColor }]}>
-        <Text>{this.props.text}</Text>
+      <View style={styles.card}>
+        <Text style={styles.word}>{this.props.text}</Text>
       </View>
     );
   }
@@ -22,7 +22,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 300,
-    height: 300,
+    backgroundColor: COLORS.teal,
+    borderColor: COLORS.teal,
+    borderWidth: 2,
+    borderRadius: 5,
+    width: 200,
+    height: 200,
+  },
+  word: {
+    color: COLORS.white,
   },
 });
