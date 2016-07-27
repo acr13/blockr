@@ -8,9 +8,11 @@ import Quiz from './Quiz/Quiz';
 
 import {
   Navigator,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
 
 function mapStateToProps() {
@@ -74,6 +76,10 @@ class MyNavigator extends Component {
 
   render() {
     return (
+      <View style={{flex: 1}}>
+        <StatusBar
+          barStyle={'light-content'}
+        />
         <Navigator
             initialRoute={ROUTES[0]}
             initialRouteStack={ROUTES}
@@ -81,6 +87,7 @@ class MyNavigator extends Component {
             renderScene={this._renderScene}
             style={{ paddingTop: 65 }}
         />
+      </View>
     );
   }
 }
