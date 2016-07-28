@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { startQuiz } from '../../reducers/route';
+import { startQuiz } from '../../reducers/words';
 import { ROUTES } from '../../constants/routes';
 import COLORS from '../../utils/colors';
 import {
@@ -33,6 +33,7 @@ class Home extends Component {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
               onPress={() => {
+                this.props.startQuiz();
                 this.props.navigator.push(ROUTES[1]);
               }}
           >

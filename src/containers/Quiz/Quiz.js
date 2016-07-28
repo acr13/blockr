@@ -2,36 +2,29 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from '../../components/Card/Card';
 import SwipeCards from '../../components/SwipeCards/SwipeCards';
+import { addYes, addNo } from '../../reducers/words';
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    quizWords: state.words.get('quizWords'),
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    startQuiz: () => dispatch(startQuiz()),
+    addYes: (card) => dispatch(addYes(card)),
+    addNo: (card) => dispatch(addNo(card)),
   };
 }
-
-// TODO get cards from state
-const Cards = [
-  {text: 'Tomato'},
-  /*{text: 'Aubergine'},
-  {text: 'Courgette'},
-  {text: 'Blueberry'},
-  {text: 'Umm...'},
-  {text: 'orange'},
-  */
-];
 
 class Quiz extends Component {
 
   render() {
     return (
       <SwipeCards
-        cards={Cards}
+        cards={this.props.quizWords}
         loop={false}
-        renderCard={(cardData) => <Card {...cardData} />}
+        renderCard={(cardData) => <Card card={cardData} />}
         showYup
         showNope
         handleYup={this.handleYup}
@@ -41,12 +34,12 @@ class Quiz extends Component {
     );
   }
 
-  handleYup() {
-    console.log('yup');
+  handleYup(card) {
+    addYes(card);
   }
 
-  handleNope() {
-    console.log('nope');
+  handleNope(card) {
+    addNo(card);
   }
 }
 

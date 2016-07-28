@@ -22,17 +22,18 @@ class SwipeCards extends Component {
   }
 
   _goToNextCard() {
-    const currentCardIdx = this.props.cards.indexOf(this.state.card);
+    const currentCardIdx = this.state.cardIdx;
     const newIdx = currentCardIdx + 1;
 
     // Checks to see if last card.
     // If props.loop=true, will start again from the first card.
     const card = newIdx > this.props.cards.length - 1
-      ? this.props.loop ? this.props.cards[0] : null
-      : this.props.cards[newIdx];
+      ? this.props.loop ? this.props.cards.get(0) : null
+      : this.props.cards.get(newIdx);
 
     this.setState({
       card: card,
+      cardIdx: newIdx,
     });
   }
 
@@ -49,7 +50,8 @@ class SwipeCards extends Component {
     this.state = {
       pan: new Animated.ValueXY(),
       enter: new Animated.Value(0.5),
-      card: this.props.cards[0],
+      card: this.props.cards.get(0),
+      cardIdx: 0,
     };
   }
 
@@ -105,9 +107,9 @@ class SwipeCards extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.cards && nextProps.cards.length > 0) {
+    if (nextProps.cards && nextProps.cards.size > 0) {
       this.setState({
-        card: nextProps.cards[0],
+        card: nextProps.cards.get(0),
       });
     }
   }

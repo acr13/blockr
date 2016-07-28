@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import route from './route';
+import words from './words';
 
 const rootReducer = combineReducers({
-  route,
+  words,
 });
 
 export default rootReducer;

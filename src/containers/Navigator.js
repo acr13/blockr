@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ROUTES, HOME, QUIZ } from '../constants/routes';
-import { goBack } from '../reducers/route';
 import COLORS from '../utils/colors';
 import Home from './Home/Home';
 import Quiz from './Quiz/Quiz';
@@ -19,10 +18,8 @@ function mapStateToProps() {
   return {};
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    goBack: () => dispatch(goBack()),
-  };
+function mapDispatchToProps() {
+  return {};
 }
 
 class MyNavigator extends Component {

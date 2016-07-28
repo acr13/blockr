@@ -10,7 +10,7 @@ export default class Card extends Component {
   render() {
     return (
       <View style={styles.card}>
-        <Text style={styles.word}>{this.props.text}</Text>
+        <Text style={styles.word}>{this.props.card.get('word')}</Text>
       </View>
     );
   }
