@@ -31,6 +31,28 @@ function route(state = initialState, action = {}) {
         quizWords: getQuizWords(state),
       });
 
+    case ADD_YES:
+      return state.updateIn(['words'], (words) => {
+        return words.map((word) => {
+          if (word.get('word') === action.payload.card.get('word')) {
+            return word.update('yes', val => val + 1);
+          }
+
+          return word;
+        });
+      });
+
+    case ADD_NO:
+      return state.updateIn(['words'], (words) => {
+        return words.map((word) => {
+          if (word.get('word') === action.payload.card.get('word')) {
+            return word.update('no', val => val + 1);
+          }
+
+          return word;
+        });
+      });
+
     default:
       return state;
   }
@@ -47,14 +69,18 @@ export function startQuiz() {
 export function addYes(card) {
   return {
     type: ADD_YES,
-    payload: card,
+    payload: {
+      card: card,
+    },
   };
 }
 
 export function addNo(card) {
   return {
     type: ADD_NO,
-    payload: card,
+    payload: {
+      card: card,
+    },
   };
 }
 

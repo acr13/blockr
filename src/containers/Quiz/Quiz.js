@@ -27,19 +27,19 @@ class Quiz extends Component {
         renderCard={(cardData) => <Card card={cardData} />}
         showYup
         showNope
-        handleYup={this.handleYup}
-        handleNope={this.handleNope}
+        handleYup={(card) => this.handleYup(card)}
+        handleNope={(card) => this.handleNope(card)}
         navigator={this.props.navigator}
       />
     );
   }
 
   handleYup(card) {
-    addYes(card);
+    this.props.addYes(card);
   }
 
   handleNope(card) {
-    addNo(card);
+    this.props.addNo(card);
   }
 }
 

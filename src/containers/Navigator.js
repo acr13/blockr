@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { ROUTES, HOME, QUIZ } from '../constants/routes';
+import { ROUTES, HOME, QUIZ, SCORES } from '../constants/routes';
 import COLORS from '../utils/colors';
 import Home from './Home/Home';
 import Quiz from './Quiz/Quiz';
+import Scores from './Scores/Scores';
 
 import {
   Navigator,
@@ -37,7 +38,6 @@ class MyNavigator extends Component {
                 <TouchableOpacity
                   onPress={() => {
                     navigator.pop();
-                    this.props.goBack();
                   }}
                 >
                   <Text style={styles.left}>{'Back'}</Text>
@@ -65,6 +65,9 @@ class MyNavigator extends Component {
 
       case QUIZ:
         return (<Quiz navigator={navigator} />);
+
+      case SCORES:
+        return (<Scores navigator={navigator} />);
 
       default:
         return (<Text>{'default route'}</Text>);

@@ -44,7 +44,8 @@ class Home extends Component {
 
           <TouchableOpacity
               onPress={() => {
-                this.props.navigator.push(ROUTES[1]);
+                this.props.startQuiz();
+                this.props.navigator.push(ROUTES[2]);
               }}
           >
             <View style={styles.button}>
