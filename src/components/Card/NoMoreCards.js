@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ROUTES } from '../constants/routes';
 import {
   StyleSheet,
   Text,
@@ -11,7 +12,7 @@ export default class NoMoreCards extends Component {
   render() {
     return (
       <View>
-        <TouchableOpacity onPress={() => { this.props.navigator.pop(); }}>
+        <TouchableOpacity onPress={() => { this.props.navigator.jumpTo(ROUTES[0]); }}>
           <View style={styles.button}>
             <Text style={styles.text}>{'Home'}</Text>
           </View>

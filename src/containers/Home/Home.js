@@ -34,7 +34,7 @@ class Home extends Component {
           <TouchableOpacity
               onPress={() => {
                 this.props.startQuiz();
-                this.props.navigator.push(ROUTES[1]);
+                this.props.navigator.jumpTo(ROUTES[1]);
               }}
           >
             <View style={styles.button}>
@@ -44,8 +44,7 @@ class Home extends Component {
 
           <TouchableOpacity
               onPress={() => {
-                this.props.startQuiz();
-                this.props.navigator.push(ROUTES[2]);
+                this.props.navigator.jumpTo(ROUTES[2]);
               }}
           >
             <View style={styles.button}>

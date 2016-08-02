@@ -37,7 +37,7 @@ class MyNavigator extends Component {
               return (
                 <TouchableOpacity
                   onPress={() => {
-                    navigator.pop();
+                    navigator.jumpTo(ROUTES[0]);
                   }}
                 >
                   <Text style={styles.left}>{'Back'}</Text>
