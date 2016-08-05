@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ROUTES } from '../constants/routes';
+import { ROUTES } from '../../constants/routes';
 import {
   StyleSheet,
   Text,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     marginHorizontal: 20,
     marginBottom: 20,
-    backgroundColor: COLORS.teal,
+    backgroundColor: COLORS.blue,
   },
   text: {
     flex: 1,

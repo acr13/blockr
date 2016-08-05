@@ -15,8 +15,10 @@ import {
   View,
 } from 'react-native';
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    words: state.words.get('words'),
+  };
 }
 
 function mapDispatchToProps() {
@@ -67,7 +69,7 @@ class MyNavigator extends Component {
         return (<Quiz navigator={navigator} />);
 
       case SCORES:
-        return (<Scores navigator={navigator} />);
+        return (<Scores words={this.props.words} navigator={navigator} />);
 
       default:
         return (<Text>{'default route'}</Text>);
@@ -84,7 +86,7 @@ class MyNavigator extends Component {
             initialRoute={ROUTES[0]}
             initialRouteStack={ROUTES}
             navigationBar={this._renderHeader()}
-            renderScene={this._renderScene}
+            renderScene={this._renderScene.bind(this)}
             style={{ paddingTop: 65 }}
         />
       </View>

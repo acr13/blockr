@@ -143,41 +143,51 @@ class SwipeCards extends Component {
 
     return (
       <View style={styles.container}>
-        { this.state.card
-            ? (
-            <Animated.View style={[styles.card, animatedCardstyles]} {...this._panResponder.panHandlers}>
-              {this.renderCard(this.state.card)}
-            </Animated.View>
-            )
-            : this.renderNoMoreCards() }
+        <View style={styles.cardContainer}>
 
-
-        { this.props.renderNope
-          ? this.props.renderNope(pan)
-          : (
-              this.props.showNope
+          {
+            this.state.card
               ? (
-                <Animated.View style={[styles.nope, animatedNopeStyles]}>
-                  <Text style={styles.nopeText}>{this.props.noText ? this.props.noText : 'Nope!'}</Text>
-                </Animated.View>
-                )
-              : null
-            )
-        }
-
-        { this.props.renderYup
-          ? this.props.renderYup(pan)
-          : (
-              this.props.showYup
-              ? (
-                <Animated.View style={[styles.yup, animatedYupStyles]}>
-                  <Text style={styles.yupText}>{this.props.yupText ? this.props.yupText : 'Yup!'}</Text>
-                </Animated.View>
+              <Animated.View style={animatedCardstyles} {...this._panResponder.panHandlers}>
+                {this.renderCard(this.state.card)}
+              </Animated.View>
               )
-              : null
-            )
-        }
+              : this.renderNoMoreCards()
+          }
+        </View>
 
+
+        <View style={styles.iconContainer}>
+          {
+            this.props.renderNope
+            ?
+            this.props.renderNope(pan)
+            : (
+                this.props.showNope
+                ? (
+                  <Animated.View style={[styles.nope, animatedNopeStyles]}>
+                    <Text style={styles.nopeText}>{this.props.noText ? this.props.noText : 'Nope!'}</Text>
+                  </Animated.View>
+                  )
+                : null
+              )
+          }
+
+          {
+            this.props.renderYup
+            ?
+            this.props.renderYup(pan)
+            : (
+                this.props.showYup
+                ? (
+                  <Animated.View style={[styles.yup, animatedYupStyles]}>
+                    <Text style={styles.yupText}>{this.props.yupText ? this.props.yupText : 'Yup!'}</Text>
+                  </Animated.View>
+                )
+                : null
+              )
+          }
+        </View>
       </View>
     );
   }
@@ -191,12 +201,29 @@ SwipeCards.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: COLORS.white,
   },
+  cardContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.grey,
+    alignSelf: 'stretch',
+  },
+  iconContainer: {
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.white,
+    alignSelf: 'stretch',
+  },
   yup: {
-    borderColor: COLORS.teal,
+    borderColor: COLORS.blue,
     borderWidth: 2,
     position: 'absolute',
     padding: 20,
@@ -206,7 +233,7 @@ const styles = StyleSheet.create({
   },
   yupText: {
     fontSize: 16,
-    color: COLORS.teal,
+    color: COLORS.blue,
   },
   nope: {
     borderColor: COLORS.red,

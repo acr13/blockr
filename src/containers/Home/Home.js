@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginBottom: 20,
     height: 40,
-    backgroundColor: COLORS.teal,
+    backgroundColor: COLORS.blue,
   },
   text: {
     flex: 1,
